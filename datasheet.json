@@ -1,0 +1,242 @@
+{
+    "@context": "https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld",
+    "@id": "https://api.census.gov/data/2017/acs/acs5.json",
+    "@type": "dcat:Catalog",
+    "conformsTo": "https://project-open-data.cio.gov/v1.1/schema",
+    "describedBy": "https://project-open-data.cio.gov/v1.1/schema/catalog.json",
+    "dataset": [
+      {
+        "c_vintage": 2017,
+        "c_dataset": [
+          "acs",
+          "acs5"
+        ],
+        "c_geographyLink": "https://api.census.gov/data/2017/acs/acs5/geography.json",
+        "c_variablesLink": "https://api.census.gov/data/2017/acs/acs5/variables.json",
+        "c_tagsLink": "https://api.census.gov/data/2017/acs/acs5/tags.json",
+        "c_examplesLink": "https://api.census.gov/data/2017/acs/acs5/examples.json",
+        "c_groupsLink": "https://api.census.gov/data/2017/acs/acs5/groups.json",
+        "c_valuesLink": "https://api.census.gov/data/2017/acs/acs5/values.json",
+        "c_documentationLink": "https://www.census.gov/developer/",
+        "c_isAggregate": true,
+        "c_isCube": true,
+        "c_isAvailable": true,
+        "@type": "dcat:Dataset",
+        "title": "ACS 5-Year Detailed Tables",
+        "description": "The American Community Survey (ACS) is an ongoing survey that provides data every year -- giving communities the current information they need to plan investments and services. The ACS covers a broad range of topics about social, economic, demographic, and housing characteristics of the U.S. population.  Summary files include the following geographies: nation, all states (including DC and Puerto Rico), all metropolitan areas, all congressional districts (114th congress), all counties, all places, and all tracts and block groups.  Summary files contain the most detailed cross-tabulations, many of which are published down to block groups. The data are population and housing counts. There are over 64,000 variables in this dataset.",
+        "distribution": [
+          {
+            "@type": "dcat:Distribution",
+            "accessURL": "https://api.census.gov/data/2017/acs/acs5",
+            "description": "API endpoint",
+            "format": "API",
+            "mediaType": "application/json",
+            "title": "API endpoint"
+          }
+        ],
+        "contactPoint": {
+          "fn": "American Community Survey Office",
+          "hasEmail": "acso.users.support@census.gov"
+        },
+        "identifier": "https://api.census.gov/data/id/ACSDT5Y2017",
+        "keyword": [
+        ],
+        "license": "https://creativecommons.org/publicdomain/zero/1.0/unidentified",
+        "modified": "2018-08-21 07:11:43.0",
+        "programCode": [
+          "006:004"
+        ],
+        "references": [
+          "https://www.census.gov/developers/"
+        ],
+        "temporal": "unidentified",
+        "publisher": {
+          "@type": "org:Organization",
+          "name": "U.S. Census Bureau",
+          "subOrganizationOf": {
+               "@type": "org:Organization",
+               "name": "U.S. Department Of Commerce",
+               "subOrganizationOf": {
+                   "@type": "org:Organization",
+                   "name": "U.S. Government"
+               }
+           }
+        }
+      },
+      {
+        "c_vintage": 2017,
+        "c_dataset": [
+          "acs",
+          "acs5",
+          "cprofile"
+        ],
+        "c_geographyLink": "https://api.census.gov/data/2017/acs/acs5/cprofile/geography.json",
+        "c_variablesLink": "https://api.census.gov/data/2017/acs/acs5/cprofile/variables.json",
+        "c_examplesLink": "https://api.census.gov/data/2017/acs/acs5/cprofile/examples.json",
+        "c_groupsLink": "https://api.census.gov/data/2017/acs/acs5/cprofile/groups.json",
+        "c_valuesLink": "https://api.census.gov/data/2017/acs/acs5/cprofile/values.json",
+        "c_documentationLink": "https://www.census.gov/developer/",
+        "c_isAggregate": true,
+        "c_isCube": true,
+        "c_isAvailable": true,
+        "@type": "dcat:Dataset",
+        "title": "ACS 5-Year Comparison Profiles",
+        "description": "The American Community Survey (ACS) is an ongoing survey that provides data every year -- giving communities the current information they need to plan investments and services. The ACS covers a broad range of topics about social, economic, demographic, and housing characteristics of the U.S. population.  The comparison profiles include the following geographies: nation, all states (including DC and Puerto Rico), all metropolitan areas, all congressional districts, all counties and all places with a population of 5,000 or more.  Comparison profiles are similar to data profiles but also include comparisons with past-year data.  The current year data are compared with prior 5-Year data and include statistical significance testing.  There are over 3,000 variables in this dataset.",
+        "distribution": [
+          {
+            "@type": "dcat:Distribution",
+            "accessURL": "https://api.census.gov/data/2017/acs/acs5/cprofile",
+            "description": "API endpoint",
+            "format": "API",
+            "mediaType": "application/json",
+            "title": "API endpoint"
+          }
+        ],
+        "contactPoint": {
+          "fn": "American Community Survey Office",
+          "hasEmail": "acso.users.support@census.gov"
+        },
+        "identifier": "https://api.census.gov/data/id/ACSCP5Y2017",
+        "keyword": [
+        ],
+        "license": "https://creativecommons.org/publicdomain/zero/1.0/unidentified",
+        "modified": "2018-10-19 00:00:00.0",
+        "programCode": [
+          "006:004"
+        ],
+        "references": [
+          "https://www.census.gov/developers/"
+        ],
+        "temporal": "unidentified",
+        "publisher": {
+          "@type": "org:Organization",
+          "name": "U.S. Census Bureau",
+          "subOrganizationOf": {
+               "@type": "org:Organization",
+               "name": "U.S. Department Of Commerce",
+               "subOrganizationOf": {
+                   "@type": "org:Organization",
+                   "name": "U.S. Government"
+               }
+           }
+        }
+      },
+      {
+        "c_vintage": 2017,
+        "c_dataset": [
+          "acs",
+          "acs5",
+          "profile"
+        ],
+        "c_geographyLink": "https://api.census.gov/data/2017/acs/acs5/profile/geography.json",
+        "c_variablesLink": "https://api.census.gov/data/2017/acs/acs5/profile/variables.json",
+        "c_examplesLink": "https://api.census.gov/data/2017/acs/acs5/profile/examples.json",
+        "c_groupsLink": "https://api.census.gov/data/2017/acs/acs5/profile/groups.json",
+        "c_valuesLink": "https://api.census.gov/data/2017/acs/acs5/profile/values.json",
+        "c_documentationLink": "https://www.census.gov/developer/",
+        "c_isAggregate": true,
+        "c_isCube": true,
+        "c_isAvailable": true,
+        "@type": "dcat:Dataset",
+        "title": "ACS 5-Year Data Profiles",
+        "description": "The American Community Survey (ACS) is an ongoing survey that provides data every year -- giving communities the current information they need to plan investments and services. The ACS covers a broad range of topics about social, economic, demographic, and housing characteristics of the U.S. population. The data profiles include the following geographies: nation, all states (including DC and Puerto Rico), all metropolitan areas, all congressional districts, all counties, all places and all tracts. Data profiles contain broad social, economic, housing, and demographic information. The data are presented as both counts and percentages. There are over 2,400 variables in this dataset.",
+        "distribution": [
+          {
+            "@type": "dcat:Distribution",
+            "accessURL": "https://api.census.gov/data/2017/acs/acs5/profile",
+            "description": "API endpoint",
+            "format": "API",
+            "mediaType": "application/json",
+            "title": "API endpoint"
+          }
+        ],
+        "contactPoint": {
+          "fn": "American Community Survey Office",
+          "hasEmail": "acso.users.support@census.gov"
+        },
+        "identifier": "https://api.census.gov/data/id/ACSDP5Y2017",
+        "keyword": [
+        ],
+        "license": "https://creativecommons.org/publicdomain/zero/1.0/unidentified",
+        "modified": "2018-10-19 00:00:00.0",
+        "programCode": [
+          "006:004"
+        ],
+        "references": [
+          "https://www.census.gov/developers/"
+        ],
+        "temporal": "unidentified",
+        "publisher": {
+          "@type": "org:Organization",
+          "name": "U.S. Census Bureau",
+          "subOrganizationOf": {
+               "@type": "org:Organization",
+               "name": "U.S. Department Of Commerce",
+               "subOrganizationOf": {
+                   "@type": "org:Organization",
+                   "name": "U.S. Government"
+               }
+           }
+        }
+      },
+      {
+        "c_vintage": 2017,
+        "c_dataset": [
+          "acs",
+          "acs5",
+          "subject"
+        ],
+        "c_geographyLink": "https://api.census.gov/data/2017/acs/acs5/subject/geography.json",
+        "c_variablesLink": "https://api.census.gov/data/2017/acs/acs5/subject/variables.json",
+        "c_tagsLink": "https://api.census.gov/data/2017/acs/acs5/subject/tags.json",
+        "c_examplesLink": "https://api.census.gov/data/2017/acs/acs5/subject/examples.json",
+        "c_groupsLink": "https://api.census.gov/data/2017/acs/acs5/subject/groups.json",
+        "c_valuesLink": "https://api.census.gov/data/2017/acs/acs5/subject/values.json",
+        "c_documentationLink": "https://www.census.gov/developer/",
+        "c_isAggregate": true,
+        "c_isCube": true,
+        "c_isAvailable": true,
+        "@type": "dcat:Dataset",
+        "title": "ACS 5-Year Subject Tables",
+        "description": "The American Community Survey (ACS) is an ongoing survey that provides data every year -- giving communities the current information they need to plan investments and services. The ACS covers a broad range of topics about social, economic, demographic, and housing characteristics of the U.S. population. The subject tables include the following geographies: nation, all states (including DC and Puerto Rico), all metropolitan areas, all congressional districts, all counties, all places and all tracts. Subject tables provide an overview of the estimates available in a particular topic.  The data are presented as both counts and percentages.  There are over 66,000 variables in this dataset.",
+        "distribution": [
+          {
+            "@type": "dcat:Distribution",
+            "accessURL": "https://api.census.gov/data/2017/acs/acs5/subject",
+            "description": "API endpoint",
+            "format": "API",
+            "mediaType": "application/json",
+            "title": "API endpoint"
+          }
+        ],
+        "contactPoint": {
+          "fn": "American Community Survey Office",
+          "hasEmail": "acso.users.support@census.gov"
+        },
+        "identifier": "https://api.census.gov/data/id/ACSST5Y2017",
+        "keyword": [
+        ],
+        "license": "https://creativecommons.org/publicdomain/zero/1.0/unidentified",
+        "modified": "2018-10-19 00:00:00.0",
+        "programCode": [
+          "006:004"
+        ],
+        "references": [
+          "https://www.census.gov/developers/"
+        ],
+        "temporal": "unidentified",
+        "publisher": {
+          "@type": "org:Organization",
+          "name": "U.S. Census Bureau",
+          "subOrganizationOf": {
+               "@type": "org:Organization",
+               "name": "U.S. Department Of Commerce",
+               "subOrganizationOf": {
+                   "@type": "org:Organization",
+                   "name": "U.S. Government"
+               }
+           }
+        }
+      }
+    ]
+  }
