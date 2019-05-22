@@ -17,10 +17,10 @@
     "express": "^4.17.0",
     "regression": "^2.0.1",
     "url": "^0.11.0",
-    "zipcodes": "^8.0.0"
+    "zipcodes": "^8.0.0",
+    "request": "^2.88.0"
   },
   "devDependencies": {
-    "request": "^2.88.0",
     "tape": "^4.7.0"
   },
   "repository": {
