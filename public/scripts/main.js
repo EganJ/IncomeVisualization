@@ -1,5 +1,4 @@
-import census from "citysdk"
-
+census=require("citysdk");
 census({
     "vintage":2017,
     "geoHierarchy":{
