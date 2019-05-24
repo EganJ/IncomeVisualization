@@ -5,10 +5,9 @@ const request = require('request');
 const zipcodes = require("zipcodes");
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 5000;
-
-const censusResponseTotal = 1;
+const avgAmericanIncome=61372;
 var censusValueKeys = [];
-var censusTotalHousholdsKey="B19001_001E";
+var censusTotalHouseholdsKey = "B19001_001E";
 //Last response is NaN because it could extend to infinity 
 const censusResponseCaps = [0, 10000, 14999, 19999, 24999, 29999, 34999, 39999, 44999, 49999, 59999, 74999, 99999, 124999, 149999, 199999, NaN]
 for (var i = 1; i < 18; i++) {
@@ -39,9 +38,11 @@ app.post('/', function (req, res) {
             res.write(censusData);
             res.end();
         } else {
-            data = []
+            data = [0];
+            sumHouseholds=0;
             for (var key = 1; key < censusValueKeys.length; key++) {
-                data.push(censusData[0][censusValueKeys[key]]/censusData[0][censusTotalHousholdsKey]);
+                sumHouseholds+=censusData[0][censusValueKeys[key]] 
+                data.push(sumHouseholds/ censusData[0][censusTotalHouseholdsKey]);
             }
             page = buildPage(data);
             res.write(page);
@@ -110,16 +111,71 @@ function getData(string, callback) {
 function buildPage(data) {
     var total = data[0];
     var page = "<html><body style='color:cornsilk;'>"
-    for (d in data) {
-        page += "<p>" + data[d] + "</p>"
+    // for (var d=0;d<data.length;d++) {
+    //     page += "<p>" + data[d] +" - &"+censusResponseCaps[d+1]+ "</p>"
+    // }
+    var dataInd=0;//the index of data catagory that this is below.
+    var percent=0;
+    var incomes=[];
+    //continue to the last known percentile
+    for(;percent/100<=data[data.length-1];percent++){
+        var p=percent/100;//Decimal value
+        while(p>data[dataInd+1]){
+            //percentile moves up to next catagory
+            dataInd++;
+        }
+        //create weights
+        //distances to known percentile
+        difDown=p-data[dataInd];
+        difUp=data[dataInd+1]-p;
+        spread=data[dataInd+1]-data[dataInd];
+        weightDown=difUp/spread;//Greater distance from up, greater weight down
+        weightUp=difDown/spread;//Sum of weight up and weight down will always equal 1
+        income=weightDown*censusResponseCaps[dataInd]+weightUp*censusResponseCaps[dataInd+1];
+        console.log()
+        console.log("dataInd:",dataInd);
+        console.log("p:",p);
+        console.log("data[dataInd]",data[dataInd]);
+        console.log("data[dataInd+1]",data[dataInd+1]);        
+        console.log("weightDown:",weightDown);
+        console.log("weightUp:",weightUp);
+        console.log("censusResponseCaps[dataInd]:",censusResponseCaps[dataInd]);
+        console.log("censusResponseCaps[dataInd+1]:",censusResponseCaps[dataInd+1]);
+        incomes.push(income);
+    }
+    incomes=shuffle(incomes);
+    for(i in incomes){
+        income=incomes[i];
+        page+="<img style='margin:0;float:left;width:"+100*income/avgAmericanIncome+"px;height:"+100*income/avgAmericanIncome+"px;' src='/person.png'>";
     }
     page += "</body></html>"
     return page;
 }
+
+/**
+ * https://stackoverflow.com/a/2450976  
+ */
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
 
 app.listen(PORT, () => console.log(`Listening on localhost:${PORT}`));
 //census partial query link for delaware:
 //https://api.census.gov/data/2017/acs/acs5?get=NAME,B19001_001E,B19001_002E,B19001_003E,B19001_004E&for=state:10 
 //for a complete link, continue to B19001_0017E.
 //for catagories, look at https://docs.google.com/spreadsheets/d/1s9QKGoV3oNIjYG5H81N4UNuswCbJc0zJ4RoRNzOzaxo/edit?usp=sharing 
-getData("New York NY", console.log);

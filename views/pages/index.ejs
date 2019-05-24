@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <% include ../partials/header.ejs %>
 </head>
+
 <body>
-  <h1>Income Visual</h1>
-  <h2>
-      <a>Methodology Here</a>
-  </h2>
-  <form method="POST" action="" target="result">
-      <label for="area">Target ZIP code:</label>
-      <input id="area" type="text" name="area" value="12345">
-      <input type="submit" value="Search">
-  </form>
-  <h3>This may take a while.</h3></body>
-  <iframe name="result">
-  </iframe>
+  <div style="display:flex;flex-direction: row;justify-content: space-around; justify-items: center;">
+    <div style="width:100px;">
+      <img src="./person.png" style="width:100px;height:100px;">
+      <p>The Average American household income: $61,372</p>
+    </div>
+    <div>
+      <h1>Income Visual</h1>
+      <h2>
+        <a href="/methodology.html">Methodology Here</a>
+      </h2>
+      <form method="POST" action="" target="result">
+        <label for="area">Target ZIP code:</label>
+        <input id="area" type="text" name="area" value="60621">
+        <input type="submit" value="Search">
+      </form>
+      <h3>This may take a while.</h3>
+    </div>
+    <div style="width:100px">
+      <img src="/person.png" style="width:100px;height:100px;">
+      <p>More money, larger icon. Twice as much money, twice as big.</p>
+    </div>
+  </div>
+</body>
+<iframe name="result" src="/methodology.html">
+</iframe>
 <script src="/scripts/main.js"></script>
+
 </html>

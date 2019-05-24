@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Node.js Getting Started on Heroku</title>
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+</head>
+
+<body>
+    <div class="centerColumn" style="width:50%;margin-left:auto;margin-right:auto;">
+        <h1>Methodology</h1>
+        <h2>Reading the Visual</h2>
+        <p>The visual is supposed to be an accurate representation of the target population. There are 100 icons, each representing
+            a percentile of the population. Each icon is sized proportionaly to the average american income icon, provided
+            on the visual page. An icon twice as large has an income twice as large. An income half as large has half the
+            income. The order of the icons are randomized.
+        </p>
+        <h2>Calculations</h2>
+        <p>This visual gets information from the Census's American Community Servey 2013-2017. The information provided from
+            the survey is the number of households in a variety of income ranges, as well as the total number of households.
+            This is used to calculate the percentile that an income at the cap of each of the ranges would be at, which in
+            turn is then used to create a trapezoidal approximation of the percentile curve. However, the last range in the
+            census information has no cap. For these percentiles, a regression curve is constructed from the last ten percentiles
+            with known values.
+        </p>
+        <h2>Contact</h2>
+        <p>Any questions? Please email the developer at eg.co.johnson@gmail.com</p>
+    </div>
+</body>
+
+</html>
