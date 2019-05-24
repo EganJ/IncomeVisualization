@@ -4,11 +4,17 @@
   <% include ../partials/header.ejs %>
 </head>
 <body>
-  <form method="POST" action="">
-    <label for="area">Target ZIP code:</label>
-    <input id="area" type="text" name="area" value="50200">
-    <input type="submit">
+  <h1>Income Visual</h1>
+  <h2>
+      <a>Methodology Here</a>
+  </h2>
+  <form method="POST" action="" target="result">
+      <label for="area">Target ZIP code:</label>
+      <input id="area" type="text" name="area" value="12345">
+      <input type="submit" value="Search">
   </form>
-</body>
+  <h3>This may take a while.</h3></body>
+  <iframe name="result">
+  </iframe>
 <script src="/scripts/main.js"></script>
 </html>
