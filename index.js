@@ -4,8 +4,9 @@ const census = require('citysdk');
 const request = require('request');
 const zipcodes = require("zipcodes");
 const bodyParser = require("body-parser");
+const regression = require("regression");
 const PORT = process.env.PORT || 5000;
-const avgAmericanIncome=61372;
+const avgAmericanIncome = 61372;
 var censusValueKeys = [];
 var censusTotalHouseholdsKey = "B19001_001E";
 //Last response is NaN because it could extend to infinity 
@@ -39,10 +40,10 @@ app.post('/', function (req, res) {
             res.end();
         } else {
             data = [0];
-            sumHouseholds=0;
+            sumHouseholds = 0;
             for (var key = 1; key < censusValueKeys.length; key++) {
-                sumHouseholds+=censusData[0][censusValueKeys[key]] 
-                data.push(sumHouseholds/ censusData[0][censusTotalHouseholdsKey]);
+                sumHouseholds += censusData[0][censusValueKeys[key]]
+                data.push(sumHouseholds / censusData[0][censusTotalHouseholdsKey]);
             }
             page = buildPage(data);
             res.write(page);
@@ -66,10 +67,12 @@ function getData(string, callback) {
         components = string.split(",");
         if (!(components.length == 2)) {
             callback(errMessage);
+            return;
         } else {
             search = zipcodes.lookupByName(components[0].trim(), components[1].trim())[0];
             if (search == undefined) {
                 callback(errMessage);
+                return;
             } else {
                 lat = search.latitude;
                 long = search.longitude;
@@ -79,6 +82,7 @@ function getData(string, callback) {
         search = zipcodes.lookup(string);
         if (search == undefined) {
             callback(errMessage);
+            return;
         } else {
             lat = search.latitude;
             long = search.longitude;
@@ -99,8 +103,12 @@ function getData(string, callback) {
     }, function (err, res) {
         if (!(err == null)) {
             console.log("<!-Error:", err, "->");
+            console.log("Lat:", lat, "Long:", long);
+            callback("<p style='text-align:center;'>" + err + "</p>");
+            return;
         } else {
             callback(res);
+            return;
         }
     });
 }
@@ -110,51 +118,65 @@ function getData(string, callback) {
  */
 function buildPage(data) {
     var total = data[0];
-    var page = "<html><body style='color:cornsilk;'>"
+    var page = "<html><script src=\"https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js\"></script><head><link rel='stylesheet' type='text/css' href='/stylesheets/main.css'></head><body data-masonry='{ \"itemSelector\": \"img\", \"columnWidth\": 50 }'>";
     // for (var d=0;d<data.length;d++) {
     //     page += "<p>" + data[d] +" - &"+censusResponseCaps[d+1]+ "</p>"
     // }
-    var dataInd=0;//the index of data catagory that this is below.
-    var percent=0;
-    var incomes=[];
+    var dataInd = 0;//the index of data catagory that this is below.
+    var percent = 0;
+    var incomes = [];
     //continue to the last known percentile
-    for(;percent/100<=data[data.length-1];percent++){
-        var p=percent/100;//Decimal value
-        while(p>data[dataInd+1]){
+    console.log(data)
+    for (; percent / 100 <= data[data.length - 2]; percent++) {
+        var p = percent / 100;//Decimal value
+        while (p > data[dataInd + 1]) {
             //percentile moves up to next catagory
             dataInd++;
         }
         //create weights
         //distances to known percentile
-        difDown=p-data[dataInd];
-        difUp=data[dataInd+1]-p;
-        spread=data[dataInd+1]-data[dataInd];
-        weightDown=difUp/spread;//Greater distance from up, greater weight down
-        weightUp=difDown/spread;//Sum of weight up and weight down will always equal 1
-        income=weightDown*censusResponseCaps[dataInd]+weightUp*censusResponseCaps[dataInd+1];
-        console.log()
-        console.log("dataInd:",dataInd);
-        console.log("p:",p);
-        console.log("data[dataInd]",data[dataInd]);
-        console.log("data[dataInd+1]",data[dataInd+1]);        
-        console.log("weightDown:",weightDown);
-        console.log("weightUp:",weightUp);
-        console.log("censusResponseCaps[dataInd]:",censusResponseCaps[dataInd]);
-        console.log("censusResponseCaps[dataInd+1]:",censusResponseCaps[dataInd+1]);
+        difDown = p - data[dataInd];
+        difUp = data[dataInd + 1] - p;
+        spread = data[dataInd + 1] - data[dataInd];
+        if (spread == 0) {
+            spread = 0.000001;
+        }
+        weightDown = difUp / spread;//Greater distance from up, greater weight down
+        weightUp = difDown / spread;//Sum of weight up and weight down will always equal 1
+        income = weightDown * censusResponseCaps[dataInd] + weightUp * censusResponseCaps[dataInd + 1];
         incomes.push(income);
+        console.log("Percent:", percent, "Income:", income);
     }
-    incomes=shuffle(incomes);
-    for(i in incomes){
-        income=incomes[i];
-        page+="<img style='margin:0;float:left;width:"+100*income/avgAmericanIncome+"px;height:"+100*income/avgAmericanIncome+"px;' src='/person.png'>";
+    //create regression
+    console.log(incomes);
+    var regressionData = [];
+    for (var point = 0; point < incomes.length; point++) {
+        regressionData.push([point, incomes[point]]);
+        console.log(incomes[point]);
+        console.log([point, incomes[point]]);
     }
-    page += "</body></html>"
+    var predictedPercent = percent;
+    var coef = regression.polynomial(regressionData, { orderpercent: 5 });
+    console.log("Regression:", coef);
+    for (; percent < 100; percent++) {
+        incomes.push(coef.predict(percent)[1]);
+        console.log("Percent:", percent, "Income:", incomes[incomes.length - 1]);
+    }
+    pageElements = [];
+    for (i in incomes) {
+        income = incomes[i];
+        pageElements.push("<img class='" + randColor() + "' style='margin:0;float:left;width:" + 100 * (income / avgAmericanIncome) + "px;height:" + 100 * (income / avgAmericanIncome) + "px;' src='/person.png' title='Income Percentile:" + i + " Income: $" + Math.floor(income) + (function () { if (i >= predictedPercent) { return " Extrapolated"; } return ""; })() + "'>");
+    }
+    page+=shuffle(pageElements).join("");
+    page += "</body></html>";
+
     return page;
 }
 
-/**
- * https://stackoverflow.com/a/2450976  
- */
+function randColor() {
+    return ["red", "green", "blue", "purple", "orange"][Math.floor(Math.random() * 5)]
+}
+//https://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
   
@@ -173,7 +195,6 @@ function shuffle(array) {
   
     return array;
   }
-
 app.listen(PORT, () => console.log(`Listening on localhost:${PORT}`));
 //census partial query link for delaware:
 //https://api.census.gov/data/2017/acs/acs5?get=NAME,B19001_001E,B19001_002E,B19001_003E,B19001_004E&for=state:10 
