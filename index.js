@@ -103,7 +103,6 @@ function getData(string, callback) {
     }, function (err, res) {
         if (!(err == null)) {
             console.log("<!-Error:", err, "->");
-            console.log("Lat:", lat, "Long:", long);
             callback("<p style='text-align:center;'>" + err + "</p>");
             return;
         } else {
@@ -126,7 +125,6 @@ function buildPage(data) {
     var percent = 0;
     var incomes = [];
     //continue to the last known percentile
-    console.log(data)
     for (; percent / 100 <= data[data.length - 2]; percent++) {
         var p = percent / 100;//Decimal value
         while (p > data[dataInd + 1]) {
@@ -145,22 +143,16 @@ function buildPage(data) {
         weightUp = difDown / spread;//Sum of weight up and weight down will always equal 1
         income = weightDown * censusResponseCaps[dataInd] + weightUp * censusResponseCaps[dataInd + 1];
         incomes.push(income);
-        console.log("Percent:", percent, "Income:", income);
     }
     //create regression
-    console.log(incomes);
     var regressionData = [];
     for (var point = 0; point < incomes.length; point++) {
         regressionData.push([point, incomes[point]]);
-        console.log(incomes[point]);
-        console.log([point, incomes[point]]);
     }
     var predictedPercent = percent;
     var coef = regression.polynomial(regressionData, { orderpercent: 5 });
-    console.log("Regression:", coef);
     for (; percent < 100; percent++) {
         incomes.push(coef.predict(percent)[1]);
-        console.log("Percent:", percent, "Income:", incomes[incomes.length - 1]);
     }
     pageElements = [];
     for (i in incomes) {
