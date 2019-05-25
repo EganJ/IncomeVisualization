@@ -88,3 +88,8 @@ h2{
 h3{
   font-size: 1.4em;
 }
+
+form *{
+  font-size: 1.5em;
+  color:orange;
+}
