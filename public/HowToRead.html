@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Node.js Getting Started on Heroku</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+</head>
+
+<body>
+    <div class="centerColumn" style="width:45%;margin-left:auto;margin-right:auto;">
+        <h1>About the Visual</h1>
+        <p>This visual is meant to convey information about income distributions in any city or zip code.</p>
+        <h2>Reading the Visual</h2>
+        <p>Once you search for a region, this text will be replaced with 100 scaled images, each representing the household
+            income that each percentile of the population would earn. Images are scaled so that a 100px image represents
+            the average American household income. Images are scaled proportionaly, to a household making twice that would
+            be twice as large.
+            <b class="orange">To get exact values, hover over an image once you search.</b>
+        </p>
+        <table>
+            <tr>
+                <td>Average American Household Income</td>
+                <td>1/2 Average American Household Income</td>
+                <td>2x Average American Household Income</td>
+                
+            </tr>
+            <tr>
+                <td>
+                    <img src="/person.png" style="width:100px;height:100px;" class="green">
+                </td>
+                <td>
+                    <img src="/person.png" style="width:50px;height:50px;" class="green">
+                </td>
+                <td>
+                    <img src="/person.png" style="width:200px;height:200px;" class="green">
+                </td>
+            </tr>
+        </table>
+        <h2>Searching</h2>
+        <p>To search, just enter a 5-digit zip code or enter your city and state.</p>
+        <p>Ex: 12345 or Somecity, Ca. Don't forget the comma!</p>
+        <p>For most accurate results, <b class="purple">please use zip codes.</b>This is because data is currently gathered for only one zip code at a time, and cities can have multiple zip codes, and one is chosen more or less at random.</p>
+    </div>
+</body>
+
+</html>
