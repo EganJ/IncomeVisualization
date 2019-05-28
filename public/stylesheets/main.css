@@ -1,95 +1,109 @@
 body {
   margin: 0;
   padding: 0;
-  text-align:center;
-  background-color:rgb(17, 26, 26);
-  color:lightgrey;
+  text-align: center;
+  background-color: lightgrey;
 }
 
-input{
-  background-color:darkslategrey;
-  border-color:darkslategrey;
+input {
+  background-color: #181211;
+  border-color: #181211;
 }
 
-.green{
-  color:green;
+.green {
+  color: green;
 }
 
-.red{
-  color:red;
+.red {
+  color: red;
 }
-.blue{
-  color:blue;
+
+.blue {
+  color: blue;
 }
-.orange{
-  color:orange;
+
+.orange {
+  color: orange;
 }
-.purple{
-  color:purple;
+
+.purple {
+  color: purple;
 }
-.mainpage{
-  display:flex;
+
+.mainpage {
+  display: flex;
   flex-direction: column;
+  color:lightgoldenrodyellow;
 }
 
-img.green{
-  background-color:green;
-  border-radius:50% 50% 50% 50%;
-  border-style:inset;
-  border-width:4px;
-  border-color:green;
+img.green {
+  background-color: green;
+  border-radius: 50% 50% 50% 50%;
+  border-style: inset;
+  border-width: 4px;
+  border-color: green;
 }
 
-img.red{
-  background-color:red;
-  border-radius:50% 50% 50% 50%;
-  border-style:inset;
-  border-width:4px;
-  border-color:red;
-}
-img.blue{
-  background-color:blue;
-  border-radius:50% 50% 50% 50%;
-  border-style:inset;
-  border-width:4px;
-  border-color:blue;
-}
-img.orange{
-  background-color:orange;
-  border-radius:50% 50% 50% 50%;
-  border-style:inset;
-  border-width:4px;
-  border-color:orange;
-}
-img.purple{
-  background-color:purple;
-  border-radius:50% 50% 50% 50%;
-  border-style:inset;
-  border-width:4px;
-  border-color:purple;
+img.red {
+  background-color: red;
+  border-radius: 50% 50% 50% 50%;
+  border-style: inset;
+  border-width: 4px;
+  border-color: red;
 }
 
-iframe{
-  border:none;
-  width:100%;
-  margin:0;
-  height:100vh;
+img.blue {
+  background-color: blue;
+  border-radius: 50% 50% 50% 50%;
+  border-style: inset;
+  border-width: 4px;
+  border-color: blue;
 }
 
-p{
-  font-size:1.2em;
+img.orange {
+  background-color: orange;
+  border-radius: 50% 50% 50% 50%;
+  border-style: inset;
+  border-width: 4px;
+  border-color: orange;
 }
-h1{
-  font-size:2em;
+
+img.purple {
+  background-color: purple;
+  border-radius: 50% 50% 50% 50%;
+  border-style: inset;
+  border-width: 4px;
+  border-color: purple;
 }
-h2{
-  font-size:1.7em;
+
+iframe {
+  border: none;
+  width: 100%;
+  margin: 0;
+  height: 100vh;
 }
-h3{
+
+p {
+  font-size: 1.2em;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.7em;
+}
+
+h3 {
   font-size: 1.4em;
 }
 
-form *{
+form * {
   font-size: 1.5em;
+  color:Orange;
+}
+
+a{
   color:orange;
 }

@@ -5,33 +5,31 @@
   <% include ../partials/header.ejs %>
 </head>
 
-<body class="mainpage">
-  <div style="display:flex;flex-direction: row;justify-content: space-around; justify-items: center;">
-    <div style="width:150px;">
-      <img src="./person.png" class="orange" style="width:100px;height:100px;">
-      <p>The Average American household income: $61,372</p>
-    </div>
+<body class="mainpage" style="display:flex;flex-direction:row;">
+  <div style="display:flex;flex-direction: column;justify-content: flex-start; justify-items: center; background-color:#222222">
     <div>
       <h1>Income Visual</h1>
       <h3>
         <a href="/methodology.html">Documentation Here</a>
       </h3>
+      <p>Target ZIP code or city:</p>
       <form method="POST" action="" target="result">
-        <label for="area">Target ZIP code:</label>
         <input id="area" type="text" name="area" value="60621">
         <input type="submit" value="Search">
       </form>
       <h3>This may take a while.</h3>
       <h3>Remember: You can hover over images for information.</h3>
     </div>
-    <div style="width:150px">
+    <div>
       <img src="/person.png" style="width:100px;height:100px;" class="orange">
-      <p>More money, larger icon. Twice as much money, twice as big.</p>
+      <p>The Average American household income: $61,372</p>
+      <p>This icon represents the average American household. 2x as large, 2x the income. 1/2 as large, 1/2 income.</p>
     </div>
   </div>
+  <iframe name="result" src="/HowToRead.html">
+  </iframe>
 </body>
-<iframe name="result" src="/HowToRead.html">
-</iframe>
+
 <script src="/scripts/main.js"></script>
 
 </html>
